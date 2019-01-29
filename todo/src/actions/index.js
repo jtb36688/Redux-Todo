@@ -1,4 +1,4 @@
-import moment from "moment";
+
 
 export const ADD_TODO = "ADD_TODO";
 export const CLEAR_COMPLETED = "CLEAR_COMPLETED";
@@ -9,12 +9,7 @@ export const HANDLE_INPUT_CHANGES = "HANDLE_INPUT_CHANGES";
 export const addTodo = todotitle => {
   return {
     type: ADD_TODO,
-    payload: {
-      todotitle: todotitle,
-      id: Date.now(),
-      date: new moment().format("MMMM Do YYYY, h:mm:ss a"),
-      completed: false
-    }
+    payload: todotitle
   };
 };
 export const handleInput = (name, value) => {

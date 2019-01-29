@@ -5,6 +5,7 @@ import {
   HANDLE_INPUT_CHANGES,
   CLEAR_COMPLETED
 } from "../actions";
+import moment from "moment";
 
 const initialState = {
   todoList: [],
@@ -15,13 +16,20 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
+      const newTodo = {
+        todotitle: action.payload,
+        id: Date.now(),
+        date: new moment().format("MMMM Do YYYY, h:mm:ss a"),
+        completed: false
+      };
       return {
         ...state,
-        todoList: state.todoList.concat(action.payload),
-        titlevalue: ""
+        todoList: [...state.todoList, newTodo],
+        titlevalue: ''
       };
+
     case TOGGLE_COMPLETED:
-    console.log(action.payload.todoList)
+      console.log(action.payload.todoList);
       return {
         ...state,
         todoList: action.payload.todoList
