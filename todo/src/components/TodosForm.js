@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { handleChanges, toggleMinimized, addTodo, clearCompleted } from "../actions"
 
 function TodoForm(props) {
   return (
-    <form style={{textAlign: 'center'}} onSubmit={props.add}>
+    <form style={{textAlign: 'center'}} onSubmit={props.addTodo}>
       <input
         value={props.todotitle}
         type="text"
@@ -12,20 +14,31 @@ function TodoForm(props) {
         onChange={props.handleChanges}
       />
       {' '}<span>Collapse List</span>
-      <input type='checkbox' onChange={props.onChange} ischecked={props.isChecked}></input>
-      <button onClick={props.add}>Add Todo</button>
-      <button onClick={props.clear}>Clear Completed</button>
+      <input type='checkbox' onChange={props.toggleMinimized} ischecked={props.minimizedlist}></input>
+      <button onClick={props.addTodo}>Add Todo</button>
+      <button onClick={props.clearCompleted}>Clear Completed</button>
     </form>
   );
 }
 
-TodoForm.propTypes = {
-  isChecked: PropTypes.bool,
-  onChange: PropTypes.func,
-  handleChanges: PropTypes.func,
-  todotitle: PropTypes.string,
-  add: PropTypes.func,
-  clear: PropTypes.func,
+const mapStateToProps = state => {
+    return {
+        todotitle: state.todotitle,
+        minimizedlist: state.minimizedlist
+    }
 }
 
-export default TodoForm;
+// TodoForm.propTypes = {
+//   isChecked: PropTypes.bool,
+//   onChange: PropTypes.func,
+//   handleChanges: PropTypes.func,
+//   todotitle: PropTypes.string,
+//   add: PropTypes.func,
+//   clear: PropTypes.func,
+// }
+
+export default connect(
+    mapStateToProps,
+    { handleChanges, toggleMinimized, addTodo, clearCompleted }
+  )(TodoList);
+

@@ -9,7 +9,7 @@ import todoReducer from './reducers/';
 const store = createStore(todoReducer)
 
 class App extends React.Component {
-  
+
     this.handleCheckbox = this.handleCheckbox.bind(this);
   }
 
@@ -65,17 +65,17 @@ class App extends React.Component {
         checkbox: !currentState.checkbox }
     })
   }
-  componentDidMount() {
-    if (localStorage.getItem("todoList")) {
-      this.setState({
-        todoList: JSON.parse(localStorage.getItem("todoList"))
-      })
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem("todoList")) {
+  //     this.setState({
+  //       todoList: JSON.parse(localStorage.getItem("todoList"))
+  //     })
+  //   }
+  // }
 
-  componentDidUpdate() {
-    localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
-  }
+  // componentDidUpdate() {
+  //   localStorage.setItem("todoList", JSON.stringify(this.state.todoList));
+  // }
 
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
