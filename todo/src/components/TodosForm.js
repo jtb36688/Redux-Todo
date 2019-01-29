@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { handleChanges, toggleMinimized, addTodo, clearCompleted } from "../actions"
+import { handleInput, toggleMinimized, addTodo, clearCompleted } from "../actions"
 
 function TodosForm(props) {
   
   const handleSubmit = (e, todotitle) => {
     e.preventDefault();
     props.addTodo(todotitle)
+  }
+  const handleChanges = (e) => {
+    props.handleInput(e.target.name , e.target.value)
   }
 
   return (
@@ -17,7 +20,7 @@ function TodosForm(props) {
         type="text"
         name="titlevalue"
         placeholder="Todo Title"
-        onChange={() => props.handleChanges(props.todotitle)}
+        onChange={(e) => handleChanges(e)}
       />
       {' '}<span>Collapse List</span>
       <input type='checkbox' onChange={props.toggleMinimized} ischecked={props.minimizedlist}></input>
@@ -46,6 +49,6 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { handleChanges, toggleMinimized, addTodo, clearCompleted }
+    { handleInput, toggleMinimized, addTodo, clearCompleted }
   )(TodosForm);
 

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 function Todo(props) {
   const todocomplete = props.todos.completed;
-  const minimizechecked = props.minimize;
+  const minimizechecked = props.minimizedlist;
   const completedtext = todocomplete ? <p>All Done!</p> : <p>Not Yet!</p>;
 
-  if (!minimizechecked) {
+  if (minimizechecked) {
   return ( 
       <div
       className={todocomplete ? "MinComplete" : "MinIncomplete"}>

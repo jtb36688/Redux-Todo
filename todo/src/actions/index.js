@@ -18,10 +18,10 @@ export const addTodo = (todotitle) => {
     }
   };
 };
-export const handleChanges = (todotitle) => {
+export const handleInput = (name, value) => {
   return {
-    type: CLEAR_COMPLETED,
-    payload: { titlevalue: todotitle }
+    type: HANDLE_INPUT_CHANGES,
+    payload: { [name]: value }
   };
 };
 export const toggleMinimized = () => {
