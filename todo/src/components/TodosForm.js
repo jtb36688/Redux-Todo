@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { handleChanges, toggleMinimized, addTodo, clearCompleted } from "../actions"
 
-function TodoForm(props) {
+function TodosForm(props) {
   return (
     <form style={{textAlign: 'center'}} onSubmit={props.addTodo}>
       <input
@@ -40,5 +40,5 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     { handleChanges, toggleMinimized, addTodo, clearCompleted }
-  )(TodoList);
+  )(TodosForm);
 

@@ -17,7 +17,7 @@ function Todo(props) {
     return (
     <div
       className={todocomplete ? "SoleTodoCompleted" : "SoleTodo"}
-      onClick={() => props.completed(props.index)}
+      onClick={() => props.completed(props.todoArrayOnProps, props.index)}
     >
       <div className="Date">Added on: {props.todos.date}</div>
       <div className="TodoTitle">{props.todos.todotitle}</div>

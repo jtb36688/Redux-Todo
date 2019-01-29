@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleCompleted } from "../actions";
 
-function TodoList(props) {
+function TodosList(props) {
   return (
     <div>
       {props.todoArrayOnProps.map((todo, index) => (
         <Todo
+          todoArrayOnProps={props.todoArrayOnProps}
           index={index}
           todos={todo}
           key={todo.id}
@@ -21,12 +22,11 @@ function TodoList(props) {
 }
 
 const mapStateToProps = state => {
-    return {
-        todoArrayOnProps: state.todoArray,
-        minimizedlist: state.minimizedlist
-    }
-} 
-
+  return {
+    todoArrayOnProps: state.todoList,
+    minimizedlist: state.minimizedlist
+  };
+};
 
 // prop checking
 // TodoList.propTypes = {
@@ -48,6 +48,6 @@ const mapStateToProps = state => {
 // }
 
 export default connect(
-    mapStateToProps,
-    { toggleCompleted }
-  )(TodoList);
+  mapStateToProps,
+  { toggleCompleted }
+)(TodosList);
