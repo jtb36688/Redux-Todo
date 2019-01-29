@@ -4,7 +4,6 @@ import './index.css';
 import './App.css';
 import TodosList from "./components/TodosList.js";
 import TodosForm from "./components/TodosForm.js";
-import moment from "moment";
 import { createStore } from 'redux';
 import todoReducer from './reducers/';
 import { Provider } from 'react-redux';

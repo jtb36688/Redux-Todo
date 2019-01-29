@@ -11,7 +11,7 @@ import { ADD_TODO, TOGGLE_COMPLETED, TOGGLE_MINIMIZED, HANDLE_INPUT_CHANGES, CLE
           case ADD_TODO:
             return {
               ...state,
-              todoList: action.payload.todoList
+              todoList: state.todoList.concat(action.payload)
             };
             case TOGGLE_COMPLETED:
             return {

@@ -4,18 +4,24 @@ import { connect } from "react-redux";
 import { handleChanges, toggleMinimized, addTodo, clearCompleted } from "../actions"
 
 function TodosForm(props) {
+  
+  const handleSubmit = (e, todotitle) => {
+    e.preventDefault();
+    props.addTodo(todotitle)
+  }
+
   return (
-    <form style={{textAlign: 'center'}} onSubmit={props.addTodo}>
+    <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e, props.todotitle)}>
       <input
         value={props.todotitle}
         type="text"
         name="titlevalue"
         placeholder="Todo Title"
-        onChange={props.handleChanges}
+        onChange={() => props.handleChanges(props.todotitle)}
       />
       {' '}<span>Collapse List</span>
       <input type='checkbox' onChange={props.toggleMinimized} ischecked={props.minimizedlist}></input>
-      <button onClick={props.addTodo}>Add Todo</button>
+      <button onClick={(e) => handleSubmit(e, props.todotitle)}>Add Todo</button>
       <button onClick={props.clearCompleted}>Clear Completed</button>
     </form>
   );
@@ -23,7 +29,8 @@ function TodosForm(props) {
 
 const mapStateToProps = state => {
     return {
-        todotitle: state.todotitle,
+        todoArrayOnProps: state.todoList,
+        todotitle: state.titlevalue,
         minimizedlist: state.minimizedlist
     }
 }
