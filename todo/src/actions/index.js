@@ -1,4 +1,4 @@
-import moment from "moment"
+import moment from "moment";
 
 export const ADD_TODO = "ADD_TODO";
 export const CLEAR_COMPLETED = "CLEAR_COMPLETED";
@@ -6,8 +6,7 @@ export const TOGGLE_MINIMIZED = "TOGGLE_MINIMIZED";
 export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
 export const HANDLE_INPUT_CHANGES = "HANDLE_INPUT_CHANGES";
 
-
-export const addTodo = (todotitle) => {
+export const addTodo = todotitle => {
   return {
     type: ADD_TODO,
     payload: {
@@ -27,7 +26,7 @@ export const handleInput = (name, value) => {
 export const toggleMinimized = () => {
   return {
     type: TOGGLE_MINIMIZED,
-    payload: ""
+    payload: {}
   };
 };
 export const clearCompleted = () => {
@@ -37,17 +36,18 @@ export const clearCompleted = () => {
   };
 };
 export const toggleCompleted = (todoArray, index) => {
+  console.log(todoArray, index);
   return {
     type: TOGGLE_COMPLETED,
-    payload: todoArray
-      .slice()
-      .splice(
-        index,
-        1,
-        Object.assign(
-          { completed: !todoArray[index].completed },
-          todoArray[index]
-        )
-      )
+    payload: {
+      todoList: todoArray.map((todo, idx) => {
+        if (idx !== index) {
+            return todo;
+        }
+        else {
+            return {...todo, completed: !todo.completed}
+        } 
+      })
+    }
   };
 };
