@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
     case CLEAR_COMPLETED:
       return {
         ...state,
-        todoList: action.payload.todoList
+        todoList: state.todoList.filter(todo => todo.completed === false)
       };
     default:
       return state;
