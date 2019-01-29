@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { handleInput, toggleMinimized, addTodo, clearCompleted } from "../actions"
 
@@ -11,6 +10,11 @@ function TodosForm(props) {
   }
   const handleChanges = (e) => {
     props.handleInput(e.target.name , e.target.value)
+  }
+
+  const Completed = (e, todoArray) => {
+    e.preventDefault();
+    props.clearCompleted(todoArray)
   }
 
   return (
@@ -25,7 +29,7 @@ function TodosForm(props) {
       {' '}<span>Collapse List</span>
       <input type='checkbox' onChange={props.toggleMinimized} ischecked={props.minimizedlist}></input>
       <button onClick={(e) => handleSubmit(e, props.todotitle)}>Add Todo</button>
-      <button onClick={props.clearCompleted}>Clear Completed</button>
+      <button onClick={(e) => Completed(e, props.todoArrayOnProps)}>Clear Completed</button>
     </form>
   );
 }
@@ -37,15 +41,6 @@ const mapStateToProps = state => {
         minimizedlist: state.minimizedlist
     }
 }
-
-// TodoForm.propTypes = {
-//   isChecked: PropTypes.bool,
-//   onChange: PropTypes.func,
-//   handleChanges: PropTypes.func,
-//   todotitle: PropTypes.string,
-//   add: PropTypes.func,
-//   clear: PropTypes.func,
-// }
 
 export default connect(
     mapStateToProps,

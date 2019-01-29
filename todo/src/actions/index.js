@@ -29,12 +29,15 @@ export const toggleMinimized = () => {
     payload: {}
   };
 };
-export const clearCompleted = () => {
+export const clearCompleted = (todoArray) => {
   return {
     type: CLEAR_COMPLETED,
-    payload: ""
+    payload: {
+      todoList: todoArray.filter(todo => todo.completed === false)
+    }
   };
 };
+
 export const toggleCompleted = (todoArray, index) => {
   console.log(todoArray, index);
   return {
@@ -42,11 +45,10 @@ export const toggleCompleted = (todoArray, index) => {
     payload: {
       todoList: todoArray.map((todo, idx) => {
         if (idx !== index) {
-            return todo;
+          return todo;
+        } else {
+          return { ...todo, completed: !todo.completed };
         }
-        else {
-            return {...todo, completed: !todo.completed}
-        } 
       })
     }
   };

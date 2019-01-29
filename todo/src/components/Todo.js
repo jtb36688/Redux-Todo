@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 
 function Todo(props) {
   const todocomplete = props.todos.completed;
@@ -28,16 +27,5 @@ function Todo(props) {
     }
 }
 
-// Todo.propTypes = {
-//   completed: PropTypes.func,
-//   todos: PropTypes.shape({
-//       todotitle: PropTypes.string,
-//       id: PropTypes.number,
-//       date: PropTypes.string,
-//       completed: PropTypes.bool
-//   }),
-//   index: PropTypes.number,
-//   minimize: PropTypes.bool
-// }
 
 export default Todo;

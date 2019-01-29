@@ -1,6 +1,5 @@
 import React from "react";
 import Todo from "./Todo.js";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleCompleted } from "../actions";
 
@@ -27,25 +26,6 @@ const mapStateToProps = state => {
     minimizedlist: state.minimizedlist
   };
 };
-
-// prop checking
-// TodoList.propTypes = {
-//   wholeTodoList: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       todotitle: PropTypes.string,
-//       id: PropTypes.number,
-//       date: PropTypes.string,
-//       completed: PropTypes.bool
-//     })
-//   ),
-//   completed: PropTypes.func,
-//   minimize: PropTypes.bool
-// };
-
-// default props
-// TodoList.defaultProps = {
-//   wholeTodoList: []
-// }
 
 export default connect(
   mapStateToProps,
