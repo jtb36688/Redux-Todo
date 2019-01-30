@@ -25,14 +25,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         todoList: [...state.todoList, newTodo],
-        titlevalue: ''
+        titlevalue: ""
       };
 
     case TOGGLE_COMPLETED:
-      console.log(action.payload.todoList);
       return {
         ...state,
-        todoList: action.payload.todoList
+        todoList: state.todoList.map((todo, idx) => {
+          if (idx !== action.payload) {
+            return todo;
+          } else {
+            return { ...todo, completed: !todo.completed };
+          }
+        })
       };
 
     case TOGGLE_MINIMIZED:
